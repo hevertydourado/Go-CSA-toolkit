@@ -1,17 +1,23 @@
+// cli/cmd/domain.go
+
 package cmd
 
 import (
 	"fmt"
 
-	"github.com/hevertydourado/Go-CSA-toolkit/cli"
 	"github.com/spf13/cobra"
 )
 
-var cmdDir *cobra.Command
+var domainCmd = &cobra.Command{
+	Use:   "domain",
+	Short: "Get information about a domain",
+	Run: func(cmd *cobra.Command, args []string) {
+		domain := args[0]
+		// Implement domain information retrieval here
+		fmt.Printf("Domain Information for %s\n", domain)
+	},
+}
 
-func runDir(cmd *cobra.Command, args []string) error {
-	if len(args) != 1 {
-		return fmt.Errorf("requires one argument")
-	}
-	return cli.Dir(args[0])
+func init() {
+	rootCmd.AddCommand(domainCmd)
 }
